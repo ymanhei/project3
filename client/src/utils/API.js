@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // Gets all welltops
+  getWelltops: function() {
+    return axios.get("/api/welltops");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // Gets the Welltop with the given id
+  getWelltop: function(id) {
+    return axios.get("/api/welltops/" + id);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // Deletes the Welltop with the given id
+  deleteWelltop: function(id) {
+    return axios.delete("/api/welltops/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  // Saves a Welltop to the database
+  saveWelltop: function(welltopData) {
+    return axios.post("/api/welltops", welltopData);
   }
 };
