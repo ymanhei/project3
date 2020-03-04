@@ -1,16 +1,40 @@
 const db = require("../models");
-var Welltopids = []
+var Welltopids = [];
+var incWelltopids = [];
 
 //find all ids from welltop collection
 db.Welltop.find({}).lean().exec(function(error, records) {
   records.forEach(function(record) {
-  console.log(record.welltopid);
+  //console.log(record.welltopid);
   Welltopids.push(record.welltopid);
   });
 });
 
+db.Welltop.find({}).lean().exec(function(error, records) {
+  records.forEach(function(record) {
+ db.Source.findOne({welltopid:record.welltopid}).lean().exec(function(error, rec) {
+ //console.log(rec.depth + "     " + record.depth)
+  
+    if (parseInt(rec.depth) !== parseInt(record.depth)) {
+      //console.log("Not Match: " + record.welltopid);
+    incWelltopids.push(record.welltopid);
+    //console.log(incWelltopids);
+    }
+  
+});
+
+});
+
+});
 // Defining methods for the welltopsController
 module.exports = {
+  findInc: function(req, res) {
+    console.log(incWelltopids);
+    db.Welltop.find({welltopid: { $in : incWelltopids }})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findMissing: function(req, res) {
     db.Source.find({welltopid: { $nin : Welltopids }})
       .sort({ date: -1 })
@@ -24,9 +48,27 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findByIdinc: function(req, res) {
     db.Welltop
       .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findBywIdinc: function(req, res) {
+    db.Welltop
+      .findOne({welltopid:req.params.wid})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findById: function(req, res) {
+    db.Source
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findBywId: function(req, res) {
+    db.Source
+      .findOne({welltopid:req.params.wid})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

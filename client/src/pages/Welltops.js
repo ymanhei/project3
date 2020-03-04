@@ -10,6 +10,8 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 class Welltops extends Component {
   state = {
     welltops: [],
+    welltopsinc: [],
+    welltopid: 0,
     wellname: "",
     surface: "",
     depth: 0,
@@ -23,9 +25,16 @@ class Welltops extends Component {
   loadWelltops = () => {
     API.getWelltops()
       .then(res =>
-        this.setState({ welltops: res.data, wellname: "", surface: "", depth: 0, remarks: "" })
+        this.setState({ welltops: res.data, welltopid: 0, wellname: "", surface: "", depth: 0, remarks: "" })
       )
       .catch(err => console.log(err));
+
+      API.getWelltopsinc()
+      .then(res =>
+        this.setState({ welltopsinc: res.data, welltopid: 0, wellname: "", surface: "", depth: 0, remarks: "" })
+      )
+      .catch(err => console.log(err));
+
   };
 
   deleteWelltop = id => {
@@ -98,7 +107,7 @@ class Welltops extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Welltops On My List</h1>
+              <h1>Welltops need attention!</h1>
             </Jumbotron>
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
@@ -117,15 +126,15 @@ class Welltops extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
-            
+
             <h3>Incorrect Depth</h3>
-            {this.state.welltops.length ? (
+            {this.state.welltopsinc.length ? (
               <List>
-                {this.state.welltops.map(welltop => (
-                  <ListItem key={welltop._id}>
-                    <Link to={"/welltops/" + welltop._id}>
+                {this.state.welltopsinc.map(welltopinc => (
+                  <ListItem key={welltopinc.welltopid}>
+                    <Link to={"/welltopsinc/wid/" + welltopinc.welltopid}>
                       <strong>
-                       Well Name: {welltop.wellname} Surface: {welltop.surface} Depth: {welltop.depth}m
+                       Well Name: {welltopinc.wellname} Surface: {welltopinc.surface} Depth: {welltopinc.depth}m
                       </strong>
                     </Link>
                     

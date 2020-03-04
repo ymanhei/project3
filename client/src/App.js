@@ -13,7 +13,11 @@ function App() {
         <Switch>
           <Route exact path="/" component={Welltops} />
           <Route exact path="/welltops" component={Welltops} />
+          <Route exact path="/welltopsinc" component={Welltops} />
           <Route exact path="/welltops/:id" component={Detail} />
+          <Route exact path="/welltopsinc/:id" component={Detail} />
+          <Route exact path="/welltops/wid/:wid" component={Detail} />
+          <Route exact path="/welltopsinc/wid/:wid" component={Detail} />
           <Route component={NoMatch} />
         </Switch>
       </div>
