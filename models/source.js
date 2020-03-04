@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const welltopSchema = new Schema({
+const sourceSchema = new Schema({
   wellname: { type: String, required: true },
   surface: { type: String, required: true },
   depth: { type: Number, required: true },
@@ -9,24 +9,25 @@ const welltopSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-/* const conn1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
-conn1.on('open',()=>{
-  console.log(conn1.name + " database connected")
+/* const conn2 = mongoose2.createConnection(process.env.MONGODB_URI || "mongodb://localhost/wtSource");
+conn2.on('open',()=>{
+  console.log(conn2.name + " database connected")
 })
-conn1.on('error',()=>{
+conn2.on('error',()=>{
   console.log("error in connecting to database")
 })*/
-const Welltop = mongoose.model("Welltop", welltopSchema); 
 
-/* Welltop
-  .find({wellname: "Well E"})
+const Source = mongoose.model("Source", sourceSchema);
+
+/* Source
+  .find({})
   .then(data => {
-    console.log("Welltop:  "+data);
+    console.log("SOURCE:  " + data);
     process.exit(0);
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
-  }); */
+  });  */
 
-module.exports = Welltop;
+module.exports = Source;

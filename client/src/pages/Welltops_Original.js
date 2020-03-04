@@ -109,7 +109,7 @@ class Welltops extends Component {
                        Well Name: {welltop.wellname} Surface: {welltop.surface} Depth: {welltop.depth}m
                       </strong>
                     </Link>
-                    
+                    <DeleteBtn onClick={() => this.deleteWelltop(welltop._id)} />
                   </ListItem>
                 ))}
               </List>

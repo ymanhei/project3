@@ -1,5 +1,4 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -17,6 +16,14 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
+//const conn2 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/wtSource");
+//const conn1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
+
+//console.log(conn2);
+//Repopulate all the data 
+//const seedDB2 = require("./scripts/seedDB2");
+//const seedDB = require("./scripts/seedDB");
+
 
 // Start the API server
 app.listen(PORT, function() {

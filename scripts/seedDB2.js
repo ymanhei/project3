@@ -5,54 +5,10 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/welltoplist"
+  "mongodb://localhost/source"
 );
 
 const welltopSeed = [
-  {
-    wellname: 'Well A',
-    surface: 'TR_1.0',
-        depth: 250,
-        remarks:
-          'Remark 1',
-        date: new Date(Date.now())
-    },
-    {
-    wellname: 'Well B',
-    surface: 'TR_2.0',
-        depth: 275,
-        remarks:
-          'Remark 2',
-        date: new Date(Date.now())
-    },
-    {
-    wellname: 'Well C',
-    surface: 'TR_3.0',
-        depth: 300,
-        remarks:
-          'Remark 3',
-        date: new Date(Date.now())
-    },
-    {
-    wellname: 'Well D',
-    surface: 'TR_4.0',
-        depth: 325,
-        remarks:
-          'Remark 4',
-        date: new Date(Date.now())
-    },
-    {
-    wellname: 'Well E',
-    surface: 'TR_5.0',
-        depth: 350,
-        remarks:
-          'Remark 5',
-        date: new Date(Date.now())
-    },
-  
-];
-
-const welltopSeed2 = [
   {
     wellname: 'Well A',
     surface: 'TR_1.0',
@@ -106,20 +62,8 @@ const welltopSeed2 = [
 ];
 
 db.Source
-.remove({})
-.then(() => db.Source.collection.insertMany(welltopSeed2))
-.then(data => {
-  console.log(data.result.n + " records inserted!");
-  //process.exit(0);
-})
-.catch(err => {
-  console.error(err);
-  process.exit(1);
-});
-
-db.Welltop
   .remove({})
-  .then(() => db.Welltop.collection.insertMany(welltopSeed))
+  .then(() => db.Source.collection.insertMany(welltopSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
@@ -128,4 +72,3 @@ db.Welltop
     console.error(err);
     process.exit(1);
   });
-

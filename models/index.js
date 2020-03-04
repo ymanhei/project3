@@ -1,3 +1,4 @@
 module.exports = {
-  Welltop: require("./welltop")
+  Welltop: require("./welltop"),
+  Source: require("./source")
 };
