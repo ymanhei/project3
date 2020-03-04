@@ -10,6 +10,7 @@ mongoose.connect(
 
 const welltopSeed = [
   {
+    welltopid: 100001,
     wellname: 'Well A',
     surface: 'TR_1.0',
         depth: 250,
@@ -18,6 +19,7 @@ const welltopSeed = [
         date: new Date(Date.now())
     },
     {
+    welltopid: 100002,
     wellname: 'Well B',
     surface: 'TR_2.0',
         depth: 275,
@@ -26,6 +28,7 @@ const welltopSeed = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100003,
     wellname: 'Well C',
     surface: 'TR_3.0',
         depth: 300,
@@ -34,6 +37,7 @@ const welltopSeed = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100004,
     wellname: 'Well D',
     surface: 'TR_4.0',
         depth: 325,
@@ -42,6 +46,7 @@ const welltopSeed = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100005,
     wellname: 'Well E',
     surface: 'TR_5.0',
         depth: 350,
@@ -54,6 +59,7 @@ const welltopSeed = [
 
 const welltopSeed2 = [
   {
+    welltopid: 100001,
     wellname: 'Well A',
     surface: 'TR_1.0',
         depth: 250,
@@ -62,6 +68,7 @@ const welltopSeed2 = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100002,
     wellname: 'Well B',
     surface: 'TR_2.0',
         depth: 275,
@@ -70,6 +77,7 @@ const welltopSeed2 = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100003,
     wellname: 'Well C',
     surface: 'TR_3.0',
         depth: 300,
@@ -78,6 +86,7 @@ const welltopSeed2 = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100004,
     wellname: 'Well D',
     surface: 'TR_4.0',
         depth: 325,
@@ -86,6 +95,7 @@ const welltopSeed2 = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100005,
     wellname: 'Well E',
     surface: 'TR_5.0',
         depth: 350,
@@ -94,6 +104,7 @@ const welltopSeed2 = [
         date: new Date(Date.now())
     },
     {
+      welltopid: 100006,
     wellname: 'Well F',
     surface: 'TR_6.0',
         depth: 375,
@@ -117,7 +128,7 @@ db.Source
   process.exit(1);
 });
 
-db.Welltop
+/* db.Welltop
   .remove({})
   .then(() => db.Welltop.collection.insertMany(welltopSeed))
   .then(data => {
@@ -127,5 +138,5 @@ db.Welltop
   .catch(err => {
     console.error(err);
     process.exit(1);
-  });
+  }); */
 

@@ -3,7 +3,7 @@ const welltopsController = require("../../controllers/welltopsController");
 
 // Matches with "/api/books"
 router.route("/")
-  .get(welltopsController.findAll)
+  .get(welltopsController.findMissing)
   .post(welltopsController.create);
 
 // Matches with "/api/books/:id"

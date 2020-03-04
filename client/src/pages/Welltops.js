@@ -100,6 +100,25 @@ class Welltops extends Component {
             <Jumbotron>
               <h1>Welltops On My List</h1>
             </Jumbotron>
+            <h3>Missing Welltops</h3>
+            {this.state.welltops.length ? (
+              <List>
+                {this.state.welltops.map(welltop => (
+                  <ListItem key={welltop._id}>
+                    <Link to={"/welltops/" + welltop._id}>
+                      <strong>
+                       Well Name: {welltop.wellname} Surface: {welltop.surface} Depth: {welltop.depth}m
+                      </strong>
+                    </Link>
+                    
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+            
+            <h3>Incorrect Depth</h3>
             {this.state.welltops.length ? (
               <List>
                 {this.state.welltops.map(welltop => (

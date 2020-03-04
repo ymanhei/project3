@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const welltopSchema = new Schema({
+  welltopid: { type: Number, required: true },
   wellname: { type: String, required: true },
   surface: { type: String, required: true },
   depth: { type: Number, required: true },

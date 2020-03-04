@@ -1,7 +1,22 @@
 const db = require("../models");
+var Welltopids = []
+
+//find all ids from welltop collection
+db.Welltop.find({}).lean().exec(function(error, records) {
+  records.forEach(function(record) {
+  console.log(record.welltopid);
+  Welltopids.push(record.welltopid);
+  });
+});
 
 // Defining methods for the welltopsController
 module.exports = {
+  findMissing: function(req, res) {
+    db.Source.find({welltopid: { $nin : Welltopids }})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findAll: function(req, res) {
     db.Welltop
       .find(req.query)
