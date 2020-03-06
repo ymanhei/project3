@@ -11,15 +11,20 @@ class Welltops extends Component {
   state = {
     welltops: [],
     welltopsinc: [],
+    allwelltops: [],
+    allsources: [],
     welltopid: 0,
     wellname: "",
     surface: "",
     depth: 0,
     remarks: ""
+    
   };
 
   componentDidMount() {
+    this.forceUpdate();
     this.loadWelltops();
+    this.getall();
   }
 
   loadWelltops = () => {
@@ -34,7 +39,20 @@ class Welltops extends Component {
         this.setState({ welltopsinc: res.data, welltopid: 0, wellname: "", surface: "", depth: 0, remarks: "" })
       )
       .catch(err => console.log(err));
+  };
 
+  getall = () => {
+    API.getallwelltops()
+      .then(res =>
+        this.setState({ allwelltops: res.data})
+      )
+      .catch(err => console.log(err));
+
+      API.getallsources()
+      .then(res =>
+        this.setState({ allsources: res.data})
+      )
+      .catch(err => console.log(err));
   };
 
   deleteWelltop = id => {
@@ -52,16 +70,19 @@ class Welltops extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.wellname && this.state.surface) {
-      API.saveWelltop({
-        wellname: this.state.wellname,
-        surface: this.state.surface,
-        depth: this.state.depth,
-        remarks: this.state.remarks
-      })
-        .then(res => this.loadWelltops())
-        .catch(err => console.log(err));
-    }
+
+    this.state.allsources.forEach(function(welltop) {
+    
+    API.updateWelltop(welltop.welltopid,{depth: parseInt(welltop.depth)})
+    .then(res => this.loadWelltops())
+    .catch(err => console.log(err));
+  })
+
+  API.saveWelltop(this.state.welltops)
+    .then(res => this.loadWelltops())
+    .catch(err => console.log(err));
+
+    alert("Fixed!");
   };
 
   render() {
@@ -71,43 +92,6 @@ class Welltops extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>What Welltops Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.wellname}
-                onChange={this.handleInputChange}
-                name="wellname"
-                placeholder="Well Name (required)"
-              />
-              <Input
-                value={this.state.surface}
-                onChange={this.handleInputChange}
-                name="surface"
-                placeholder="Surface (required)"
-              />
-              <Input
-                value={this.state.depth}
-                onChange={this.handleInputChange}
-                name="depth"
-                placeholder="Depth (required)"
-              />
-              <TextArea
-                value={this.state.remarks}
-                onChange={this.handleInputChange}
-                name="remarks"
-                placeholder="Remarks (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.surface && this.state.wellname)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Welltop
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Welltops need attention!</h1>
             </Jumbotron>
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
@@ -126,6 +110,14 @@ class Welltops extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+          </Col>
+          <Col size="md-6 sm-12">
+            <Jumbotron>
+              <h1>Welltops need attention!</h1>
+              <p>Total number of welltops: {this.state.allwelltops.length}</p>
+              <p>Total number of sources: {this.state.allsources.length}</p>
+            </Jumbotron>
+           
 
             <h3>Incorrect Depth</h3>
             {this.state.welltopsinc.length ? (
@@ -145,6 +137,14 @@ class Welltops extends Component {
               <h3>No Results to Display</h3>
             )}
           </Col>
+          <form>
+              <FormBtn
+                
+                onClick={this.handleFormSubmit}
+              >
+                One Click Fix!
+              </FormBtn>
+            </form>
         </Row>
       </Container>
     );

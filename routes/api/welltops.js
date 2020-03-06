@@ -15,7 +15,8 @@ router
 
   router
   .route("/wid/:wid")
-  .get(welltopsController.findBywId);
+  .get(welltopsController.findBywId)
+  .put(welltopsController.updatewid);
 
 
 module.exports = router;

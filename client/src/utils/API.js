@@ -11,9 +11,20 @@ export default {
   getWelltopincwid: function(wid) {
     return axios.get("/api/welltops/wid/" + wid);
   },
-  // Gets all welltops
+  updateWelltop: function(wid,welltopdata) {
+    return axios.put("/api/welltops/wid/" + wid,welltopdata);
+  },
+  // Gets missing welltops
   getWelltops: function() {
     return axios.get("/api/welltops");
+  },
+   // Gets all welltops
+   getallwelltops: function() {
+    return axios.get("/api/all/welltops");
+  },
+   // Gets all welltops
+   getallsources: function() {
+    return axios.get("/api/all/sources");
   },
   // Gets the Welltop with the given id
   getWelltop: function(id) {
