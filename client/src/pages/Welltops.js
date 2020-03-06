@@ -90,9 +90,11 @@ class Welltops extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-              <h1>What Welltops Should I Read?</h1>
+          <div id='myDiv' className="position-absolute"></div>
+            <Jumbotron className="position-relative">
+
             </Jumbotron>
+            
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
               <List>
@@ -147,6 +149,7 @@ class Welltops extends Component {
             </form>
         </Row>
       </Container>
+      
     );
   }
 }
