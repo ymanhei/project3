@@ -78,7 +78,29 @@ module.exports = {
     .catch(err => res.status(422).json(err));
 });
     
+
+
+
   },
+  finddistinctsurfaces: function(req, res) {
+    const aggregatorOpts = [{
+      $group: {
+        _id: "$surface",
+        count: { $sum: 1 }
+      }
+    }]
+    
+    db.Welltop.aggregate(aggregatorOpts)
+    .exec()
+    .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+/*     db.Welltop
+      .distinct("surface")  
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err)); */
+  },
+  
+
   findAll: function(req, res) {
     db.Welltop
       .find(req.query)

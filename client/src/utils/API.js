@@ -2,6 +2,9 @@ import axios from "axios";
 
 export default {
   // Gets all welltops
+  finddistinctsurfaces: function() {
+    return axios.get("/api/surfaces");
+  },
   getWelltopsinc: function() {
     return axios.get("/api/welltopsinc");
   },

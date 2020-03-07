@@ -6,13 +6,18 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Plot from 'react-plotly.js';
 
 class Welltops extends Component {
+  
   state = {
     welltops: [],
     welltopsinc: [],
     allwelltops: [],
     allsources: [],
+    allsurfaces:[],
+    surfacearr:[],
+    countarr:[],
     welltopid: 0,
     wellname: "",
     surface: "",
@@ -25,7 +30,45 @@ class Welltops extends Component {
     this.forceUpdate();
     this.loadWelltops();
     this.getall();
+    this.getallsurfaces();
+    this.populatesurfacearr();
   }
+
+  getallsurfaces = () => {
+    API.finddistinctsurfaces()
+    .then(res =>
+      this.setState({ allsurfaces: res.data})
+    )
+    .catch(err => console.log(err));
+    console.log("this.state.allsurfaces:    " + this.state.allsurfaces.length);
+  };
+
+  returnsurfacearr = (data) => {
+    var arr = [];
+    data.forEach(function (d) {
+      arr.push(d._id);
+    })
+    console.log(arr);
+   return arr
+   };  
+
+
+   returncountarr = (data) => {
+    var arr = [];
+    data.forEach(function (d) {
+      arr.push(d.count);
+    })
+    console.log(arr);
+   return arr
+   }; 
+
+    populatesurfacearr = () => {
+    
+   API.finddistinctsurfaces()
+   .then(res => 
+    this.setState({surfacearr: this.returnsurfacearr(res.data),countarr: this.returncountarr(res.data)}) 
+      )
+  };  
 
   loadWelltops = () => {
     API.getWelltops()
@@ -85,14 +128,44 @@ class Welltops extends Component {
     alert("Fixed!");
   };
 
+ /*  showpie = () => {
+    var data = [{
+      values: [19, 26, 55],
+      labels: ["Residential", "Non-Residential", "Utility"],
+      type: "pie"
+    }];
+    
+    var layout = {
+      height: 400,
+      width: 500
+    };
+    
+    Plotly.newPlot("myDiv", data, layout);
+    console.log("Plotly!")
+  }; */
+
+ 
+
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
-          <div id='myDiv' className="position-absolute"></div>
+          <div id='myDiv' className="position-absolute">
+          <Plot
+        data={[
+          {
+            values: this.state.countarr,
+            labels: this.state.surfacearr,
+            type: 'pie'
+          },
+        ]}
+        layout={ {width: 500, height: 400, title: 'Welltop Surfaces'} }
+      />
+          
+          </div>
             <Jumbotron className="position-relative">
-
+ 
             </Jumbotron>
             
             <h3>Missing Welltops</h3>
