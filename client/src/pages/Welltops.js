@@ -151,23 +151,18 @@ class Welltops extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-          <div id='myDiv' className="position-absolute">
-          <Plot
-        data={[
-          {
-            values: this.state.countarr,
-            labels: this.state.surfacearr,
-            type: 'pie'
-          },
-        ]}
-        layout={ {width: 500, height: 400, title: 'Welltop Surfaces'} }
-      />
-          
-          </div>
-            <Jumbotron className="position-relative">
- 
-            </Jumbotron>
+          {this.state.allwelltops.length == this.state.allsources.length ? 
+            (<Jumbotron>
+              <h1 className="text-success">Welltops Numbers Matched</h1>
+              <p className="display-1 text-success">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+            </Jumbotron>):  
+            (<Jumbotron className="bg-danger">
+              <h1 className="text-danger">Welltops Are Missing!</h1>          
+              <p className="display-1 text-danger">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+
+          </Jumbotron>)}
             
+            <div className="border border-secondary rounded p-3">
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
               <List>
@@ -185,15 +180,28 @@ class Welltops extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            </div>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Welltops need attention!</h1>
-              <p>Total number of welltops: {this.state.allwelltops.length}</p>
-              <p>Total number of sources: {this.state.allsources.length}</p>
-            </Jumbotron>
+          <div id='myDiv' className="position-absolute">
+          <Plot className="border border-secondary rounded"
+        data={[
+          {
+            values: this.state.countarr,
+            labels: this.state.surfacearr,
+            type: 'pie'
+          },
+        ]}
+        layout={ {width: 790, height: 400, title: 'Welltop Surfaces'} }
+      />
+         
+          </div>
+          <Jumbotron className="position-relative">
+ 
+ </Jumbotron>
+              
            
-
+            <div className="border border-secondary rounded p-3">
             <h3>Incorrect Depth</h3>
             {this.state.welltopsinc.length ? (
               <List>
@@ -211,6 +219,7 @@ class Welltops extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            </div>
           </Col>
           <form>
               <FormBtn
