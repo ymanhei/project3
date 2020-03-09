@@ -18,11 +18,13 @@ class Welltops extends Component {
     allsurfaces:[],
     surfacearr:[],
     countarr:[],
-    welltopid: 0,
-    wellname: "",
-    surface: "",
-    depth: 0,
-    remarks: ""
+    userarr:[],
+    usercountarr:[],
+    WELLTOPID: 0,
+    BOREHOLE_NAME: "",
+    STRAT_UNIT_ID: "",
+    PICK_DEPTH: 0,
+    MA_AGE: ""
     
   };
 
@@ -32,6 +34,7 @@ class Welltops extends Component {
     this.getall();
     this.getallsurfaces();
     this.populatesurfacearr();
+    
   }
 
   getallsurfaces = () => {
@@ -40,15 +43,15 @@ class Welltops extends Component {
       this.setState({ allsurfaces: res.data})
     )
     .catch(err => console.log(err));
-    console.log("this.state.allsurfaces:    " + this.state.allsurfaces.length);
+    //console.log("this.state.allsurfaces:    " + this.state.allsurfaces.length);
   };
 
-  returnsurfacearr = (data) => {
+  returnidarr = (data) => {
     var arr = [];
     data.forEach(function (d) {
       arr.push(d._id);
     })
-    console.log(arr);
+    //console.log(arr);
    return arr
    };  
 
@@ -58,28 +61,31 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d.count);
     })
-    console.log(arr);
+   // console.log(arr);
    return arr
    }; 
 
     populatesurfacearr = () => {
-    
    API.finddistinctsurfaces()
    .then(res => 
-    this.setState({surfacearr: this.returnsurfacearr(res.data),countarr: this.returncountarr(res.data)}) 
+    this.setState({surfacearr: this.returnidarr(res.data),countarr: this.returncountarr(res.data)}) 
+      )
+      API.finddistinctusers()
+   .then(res => 
+    this.setState({userarr: this.returnidarr(res.data),usercountarr: this.returncountarr(res.data)}) 
       )
   };  
 
   loadWelltops = () => {
     API.getWelltops()
       .then(res =>
-        this.setState({ welltops: res.data, welltopid: 0, wellname: "", surface: "", depth: 0, remarks: "" })
+        this.setState({ welltops: res.data })
       )
       .catch(err => console.log(err));
 
       API.getWelltopsinc()
       .then(res =>
-        this.setState({ welltopsinc: res.data, welltopid: 0, wellname: "", surface: "", depth: 0, remarks: "" })
+        this.setState({ welltopsinc: res.data})
       )
       .catch(err => console.log(err));
   };
@@ -113,21 +119,28 @@ class Welltops extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-    this.state.allsources.forEach(function(welltop) {
+   
+    API.saveWelltop(this.state.welltops)
+    .then(res => this.loadWelltops())
+    .catch(err => console.log(err));
     
-    API.updateWelltop(welltop.welltopid,{depth: parseInt(welltop.depth)})
-    .then(res => this.loadWelltops())
-    .catch(err => console.log(err));
-  })
+    this.state.welltopsinc.forEach(welltop =>
+     /*  this.setState({
+        WELLTOPID: welltop.WELLTOPID,
+        BOREHOLE_NAME: welltop.BOREHOLE_NAME,
+        STRAT_UNIT_ID: welltop.STRAT_UNIT_ID,
+        PICK_DEPTH: welltop.PICK_DEPTH,
+        MA_AGE: welltop.MA_AGE}) */
+        //console.log("welltop: " + welltop.WELLTOPID)
+        API.updateWelltopinc(welltop.WELLTOPID)
+        .then(res => 
+          this.loadWelltops())
+          .catch(err => console.log(err))
+    )
+    alert("Copied " + this.state.welltops.length + "  & updated " + this.state.welltopsinc.length + " welltops.")
+  }
 
-  API.saveWelltop(this.state.welltops)
-    .then(res => this.loadWelltops())
-    .catch(err => console.log(err));
-
-    alert("Copied " + this.state.welltops.length + "  & updated " + this.state.welltopsinc.length + " welltops.");
-  };
-
+        
  /*  showpie = () => {
     var data = [{
       values: [19, 26, 55],
@@ -153,40 +166,60 @@ class Welltops extends Component {
           <Col size="md-6">
           <Jumbotron>
           {this.state.allwelltops.length == this.state.allsources.length ? 
-            (<p><h3>Welltops Numbers Matched:</h3>
+            (<section>
+              <h3>Welltops Numbers Matched:</h3>
               <p className="text-success">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
-              <span className="display-3 text-success">{Math.round(this.state.allwelltops.length/this.state.allsources.length*100,2)}% Sync</span></p>             
+              <span className="display-3 text-success">{Math.round(this.state.allwelltops.length/this.state.allsources.length*100,2)}% </span>
+              </section>             
                ):
               (
-              <p><h3>Welltops Are Missing!</h3>   
-              <p className="text-danger">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
-              <span className="display-3 text-danger">{Math.round(this.state.allwelltops.length/this.state.allsources.length*100,2)}% Sync</span></p>
+              <section>
+                <h3>Welltops Are Missing!</h3>   
+              <p className="text-danger">{this.state.allsources.length-this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+              <span className="display-3 text-danger">{(this.state.allwelltops.length/this.state.allsources.length*100).toFixed(3)}% </span>
+              </section>
               )}
 
             {this.state.welltopsinc.length == 0 ? (
-              <p>
+              <section>
               <h3>Welltops Depth Matched:</h3>
                  <p className="text-success">{this.state.allwelltops.length-this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
-                 <span className="display-3 text-success">{Math.round((this.state.allwelltops.length-this.state.welltopsinc.length),2)/this.state.allwelltops.length*100}% Sync</span>
-                 </p>
+                 <span className="display-3 text-success">{Math.round((this.state.allwelltops.length-this.state.welltopsinc.length)/this.state.allwelltops.length*100,2)}% </span>
+                 </section>
             ):
-            (<p>
+            (<section>
               <h3>Welltops Depth Not Matched:</h3>
-              <p className="text-danger">{this.state.allwelltops.length-this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
-              <span className="display-3 text-danger">{Math.round((this.state.allwelltops.length-this.state.welltopsinc.length),2)/this.state.allwelltops.length*100}% Sync</span>   
-              </p>    )}
+              <p className="text-danger">{this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
+              <span className="display-3 text-danger">{((this.state.allwelltops.length-this.state.welltopsinc.length)/this.state.allwelltops.length*100).toFixed(3)}% </span>   
+              </section>    )}
             
    
+          </Jumbotron>
+          <div id='myDiv1' className="position-absolute">
+          <Plot className="border border-secondary rounded"
+        data={[
+          {
+            y: this.state.countarr,
+            x: this.state.surfacearr,
+            type: 'bar'
+          },
+        ]}
+        layout={ {width: 940, height: 400, title: 'Welltop Surfaces'} }
+      />
+         
+          </div>
+          <Jumbotron className="position-relative">
+ 
           </Jumbotron>
             <div className="border border-secondary rounded p-3">
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
               <List>
                 {this.state.welltops.map(welltop => (
-                  <ListItem key={welltop._id}>
-                    <Link to={"/welltops/" + welltop._id}>
+                  <ListItem key={welltop.WELLTOPID}>
+                    <Link to={"/welltops/wid/" + welltop.WELLTOPID}>
                       <strong>
-                       Well Name: {welltop.wellname} Surface: {welltop.surface} Depth: {welltop.depth}m
+                       Well Name: {welltop.BOREHOLE_NAME} 
                       </strong>
                     </Link>
                     
@@ -203,8 +236,8 @@ class Welltops extends Component {
           <Plot className="border border-secondary rounded"
         data={[
           {
-            values: this.state.countarr,
-            labels: this.state.surfacearr,
+            values: this.state.usercountarr,
+            labels: this.state.userarr,
             type: 'pie'
           },
         ]}
@@ -214,7 +247,17 @@ class Welltops extends Component {
           </div>
           <Jumbotron className="position-relative">
  
- </Jumbotron>
+          </Jumbotron>
+          <div id='myDiv' className="position-absolute">
+          <Plot className="border border-secondary rounded"
+        data={[{type: 'densitymapbox', lon: [10, 20, 30], lat: [15, 25, 35], z: [1, 3, 2]}]}
+        layout={ {width: 940, height: 400, mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
+      />
+         
+          </div>
+          <Jumbotron className="position-relative">
+ 
+          </Jumbotron>
               
            
             <div className="border border-secondary rounded p-3">
@@ -222,10 +265,10 @@ class Welltops extends Component {
             {this.state.welltopsinc.length ? (
               <List>
                 {this.state.welltopsinc.map(welltopinc => (
-                  <ListItem key={welltopinc.welltopid}>
-                    <Link to={"/welltopsinc/wid/" + welltopinc.welltopid}>
+                  <ListItem key={welltopinc.WELLTOPID}>
+                    <Link to={"/welltopsinc/wid/" + welltopinc.WELLTOPID}>
                       <strong>
-                       Well Name: {welltopinc.wellname} Surface: {welltopinc.surface} Depth: {welltopinc.depth}m
+                       Well Name: {welltopinc.BOREHOLE_NAME} Surface: {welltopinc.STRAT_UNIT_ID} Depth: {welltopinc.PICK_DEPTH}m
                       </strong>
                     </Link>
                     
@@ -237,6 +280,8 @@ class Welltops extends Component {
             )}
             </div>
           </Col>
+
+          <div className="container-fluid">
           <form>
               <FormBtn
                 
@@ -245,7 +290,11 @@ class Welltops extends Component {
                 One Click Fix!
               </FormBtn>
             </form>
+</div>
+       
+
         </Row>
+
       </Container>
       
     );

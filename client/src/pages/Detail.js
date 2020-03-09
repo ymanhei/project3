@@ -26,7 +26,7 @@ class Detail extends Component {
     }
     
     else{
-      API.getWelltop(this.props.match.params.id)
+      API.getWelltopswid(this.props.match.params.wid)
       .then(res => this.setState({ welltop: res.data }))
       .catch(err => console.log(err))
     };
@@ -41,9 +41,9 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Source:
                 <ul>
-                  <li> Well Name: {this.state.welltop.wellname}</li>
-                  <li> Surface: {this.state.welltop.surface}</li>
-                  <li> Depth: {this.state.welltop.depth}m </li>
+                  <li> Well Name: {this.state.welltop.BOREHOLE_NAME}</li>
+                  <li> Surface: {this.state.welltop.STRAT_UNIT_ID}</li>
+                  <li> Depth: {this.state.welltop.PICK_DEPTH}m </li>
                   </ul>
               </h1>
             </Jumbotron>
@@ -64,9 +64,9 @@ class Detail extends Component {
             <Jumbotron>
               <h1>Welltoplist:
                 <ul>
-                  <li> Well Name: {this.state.welltopalt.wellname}</li>
-                  <li> Surface: {this.state.welltopalt.surface}</li>
-                  <li> Depth: {this.state.welltopalt.depth}m </li>
+                  <li> Well Name: {this.state.welltopalt.BOREHOLE_NAME}</li>
+                  <li> Surface: {this.state.welltopalt.STRAT_UNIT_ID}</li>
+                  <li> Depth: {this.state.welltopalt.PICK_DEPTH}m </li>
                   </ul>
               </h1>
             </Jumbotron>
@@ -77,7 +77,7 @@ class Detail extends Component {
             <article>
               <h1>Remarks</h1>
               <p>
-                {this.state.welltopalt.remarks} 
+                {this.state.welltopalt.MA_AGE} 
               </p>
             </article>
           </Col>

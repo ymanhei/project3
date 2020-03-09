@@ -5,6 +5,9 @@ export default {
   finddistinctsurfaces: function() {
     return axios.get("/api/surfaces");
   },
+  finddistinctusers: function() {
+    return axios.get("/api/users");
+  },
   getWelltopsinc: function() {
     return axios.get("/api/welltopsinc");
   },
@@ -33,8 +36,14 @@ export default {
   getWelltop: function(id) {
     return axios.get("/api/welltops/" + id);
   },
+  getWelltopswid: function(wid) {
+    return axios.get("/api/welltops/wid/" + wid);
+  },
   getWelltopwid: function(wid) {
     return axios.get("/api/welltopsinc/wid/" + wid);
+  },
+  updateWelltopinc: function(wid) {
+    return axios.put("/api/welltopsinc/wid/" + wid);
   },
   // Deletes the Welltop with the given id
   deleteWelltop: function(id) {
