@@ -125,7 +125,7 @@ class Welltops extends Component {
     .then(res => this.loadWelltops())
     .catch(err => console.log(err));
 
-    alert("Fixed!");
+    alert("Copied " + this.state.welltops.length + "  & updated " + this.state.welltopsinc.length + " welltops.");
   };
 
  /*  showpie = () => {
@@ -151,17 +151,33 @@ class Welltops extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
+          <Jumbotron>
           {this.state.allwelltops.length == this.state.allsources.length ? 
-            (<Jumbotron>
-              <h1 className="text-success">Welltops Numbers Matched</h1>
-              <p className="display-1 text-success">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
-            </Jumbotron>):  
-            (<Jumbotron className="bg-danger">
-              <h1 className="text-danger">Welltops Are Missing!</h1>          
-              <p className="display-1 text-danger">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+            (<p><h3>Welltops Numbers Matched:</h3>
+              <p className="text-success">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+              <span className="display-3 text-success">{Math.round(this.state.allwelltops.length/this.state.allsources.length*100,2)}% Sync</span></p>             
+               ):
+              (
+              <p><h3>Welltops Are Missing!</h3>   
+              <p className="text-danger">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
+              <span className="display-3 text-danger">{Math.round(this.state.allwelltops.length/this.state.allsources.length*100,2)}% Sync</span></p>
+              )}
 
-          </Jumbotron>)}
+            {this.state.welltopsinc.length == 0 ? (
+              <p>
+              <h3>Welltops Depth Matched:</h3>
+                 <p className="text-success">{this.state.allwelltops.length-this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
+                 <span className="display-3 text-success">{Math.round((this.state.allwelltops.length-this.state.welltopsinc.length),2)/this.state.allwelltops.length*100}% Sync</span>
+                 </p>
+            ):
+            (<p>
+              <h3>Welltops Depth Not Matched:</h3>
+              <p className="text-danger">{this.state.allwelltops.length-this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
+              <span className="display-3 text-danger">{Math.round((this.state.allwelltops.length-this.state.welltopsinc.length),2)/this.state.allwelltops.length*100}% Sync</span>   
+              </p>    )}
             
+   
+          </Jumbotron>
             <div className="border border-secondary rounded p-3">
             <h3>Missing Welltops</h3>
             {this.state.welltops.length ? (
@@ -192,7 +208,7 @@ class Welltops extends Component {
             type: 'pie'
           },
         ]}
-        layout={ {width: 790, height: 400, title: 'Welltop Surfaces'} }
+        layout={ {width: 940, height: 400, title: 'Welltop Surfaces'} }
       />
          
           </div>
