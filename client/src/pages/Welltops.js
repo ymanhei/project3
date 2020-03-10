@@ -253,7 +253,7 @@ class Welltops extends Component {
                   <ListItem key={welltop.WELLTOPID}>
                     <Link to={"/welltops/wid/" + welltop.WELLTOPID}>
                       <strong>
-                       Well Name: {welltop.BOREHOLE_NAME} 
+                       Well Name: {welltop.BOREHOLE_NAME}   |  Surface: {welltop.STRAT_UNIT_ID}   |  Depth: {welltop.PICK_DEPTH}m
                       </strong>
                     </Link>
                     
@@ -302,7 +302,7 @@ class Welltops extends Component {
                   <ListItem key={welltopinc.WELLTOPID}>
                     <Link to={"/welltopsinc/wid/" + welltopinc.WELLTOPID}>
                       <strong>
-                       Well Name: {welltopinc.BOREHOLE_NAME} Surface: {welltopinc.STRAT_UNIT_ID} Depth: {welltopinc.PICK_DEPTH}m
+                       Well Name: {welltopinc.BOREHOLE_NAME}  |  Surface: {welltopinc.STRAT_UNIT_ID}  |  Depth: {welltopinc.PICK_DEPTH}m
                       </strong>
                     </Link>
                     
