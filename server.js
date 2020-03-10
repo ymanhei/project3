@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
 //console.log(conn2);
 //Repopulate all the data 
 //const seedDB2 = require("./scripts/seedDB2");
-//const seedDB = require("./scripts/seedDB");
+const seedDB = require("./scripts/seedDB");
 
 
 // Start the API server
