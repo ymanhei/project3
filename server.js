@@ -15,8 +15,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
-mongoose.connect("mongodb+srv://admin:admin@cluster0-eg6gd.mongodb.net/welltoplist?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
+
 //const conn2 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/wtSource");
 //const conn1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
 
