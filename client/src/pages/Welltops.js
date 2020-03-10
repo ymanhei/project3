@@ -20,6 +20,10 @@ class Welltops extends Component {
     countarr:[],
     userarr:[],
     usercountarr:[],
+    latarr:[],
+    lonarr:[],
+    bhnamearr:[],
+    wtcountarr:[],
     WELLTOPID: 0,
     BOREHOLE_NAME: "",
     STRAT_UNIT_ID: "",
@@ -55,6 +59,32 @@ class Welltops extends Component {
    return arr
    };  
 
+   returnlatarr = (data) => {
+    var arr = [];
+    data.forEach(function (d) {
+      arr.push(d._id.LATITUDE);
+    })
+    //console.log(arr);
+   return arr
+   };
+
+   returnlonarr = (data) => {
+    var arr = [];
+    data.forEach(function (d) {
+      arr.push(d._id.LONGTITUDE);
+    })
+    //console.log(arr);
+   return arr
+   };
+
+   returnbhnamearr = (data) => {
+    var arr = [];
+    data.forEach(function (d) {
+      arr.push(d._id.BOREHOLE_NAME);
+    })
+    //console.log(arr);
+   return arr
+   };
 
    returncountarr = (data) => {
     var arr = [];
@@ -73,6 +103,10 @@ class Welltops extends Component {
       API.finddistinctusers()
    .then(res => 
     this.setState({userarr: this.returnidarr(res.data),usercountarr: this.returncountarr(res.data)}) 
+      )
+      API.finddistinctboreholes()
+   .then(res => 
+    this.setState({latarr: this.returnlatarr(res.data),lonarr: this.returnlonarr(res.data),bhnamearr: this.returnbhnamearr(res.data),wtcountarr: this.returncountarr(res.data)}) 
       )
   };  
 
@@ -250,7 +284,7 @@ class Welltops extends Component {
           </Jumbotron>
           <div id='myDiv' className="position-absolute">
           <Plot className="border border-secondary rounded"
-        data={[{type: 'densitymapbox', lon: [10, 20, 30], lat: [15, 25, 35], z: [1, 3, 2]}]}
+        data={[{type: 'densitymapbox', lon: this.state.lonarr, lat: this.state.latarr, z: this.state.wtcountarr, text:this.state.bhnamearr}]}
         layout={ {width: 940, height: 400, mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
       />
          

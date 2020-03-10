@@ -94,11 +94,22 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  
   finddistinctusers: function(req, res) {
     const aggregatorOpts = [{
       $group: {
         _id: "$MODIFIED_BY",
+        count: { $sum: 1 }
+      }
+    }]
+    db.Welltop.aggregate(aggregatorOpts)
+    .exec()
+    .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  finddistinctbh: function(req, res) {
+    const aggregatorOpts = [{
+      $group: {
+        _id: {LATITUDE: "$LATITUDE",LONGTITUDE:"$LONGTITUDE",BOREHOLE_NAME: "$BOREHOLE_NAME"},
         count: { $sum: 1 }
       }
     }]

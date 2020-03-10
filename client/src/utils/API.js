@@ -5,6 +5,9 @@ export default {
   finddistinctsurfaces: function() {
     return axios.get("/api/surfaces");
   },
+  finddistinctboreholes: function() {
+    return axios.get("/api/boreholes");
+  },
   finddistinctusers: function() {
     return axios.get("/api/users");
   },
