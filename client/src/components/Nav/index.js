@@ -4,7 +4,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <a className="navbar-brand" href="/">
-      WCVA (Welltops Comparison and Visualisation Application)
+      WDMD (Welltop Data Management Dashboard)
       </a>
     </nav>
   );
