@@ -238,7 +238,7 @@ class Welltops extends Component {
             type: 'bar'
           },
         ]}
-        layout={ {width: 940, height: 400, title: 'Welltop Surfaces'} }
+        layout={ {width: 940, height: 400, title: 'Surfaces Ditribution'} }
       />
          
           </div>
@@ -275,7 +275,7 @@ class Welltops extends Component {
             type: 'pie'
           },
         ]}
-        layout={ {width: 940, height: 400, title: 'Welltop Surfaces'} }
+        layout={ {width: 940, height: 400, title: 'Users Contribution'} }
       />
          
           </div>
@@ -285,7 +285,7 @@ class Welltops extends Component {
           <div id='myDiv' className="position-absolute">
           <Plot className="border border-secondary rounded"
         data={[{type: 'densitymapbox', lon: this.state.lonarr, lat: this.state.latarr, z: this.state.wtcountarr, text:this.state.bhnamearr}]}
-        layout={ {width: 940, height: 400, mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
+        layout={ {width: 940, height: 400 , mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
       />
          
           </div>

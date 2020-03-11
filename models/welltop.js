@@ -17,7 +17,7 @@ const welltopSchema = new Schema({
   STRAT_UNIT_ID: { type: String, required: true },
   INTERP_ID: { type: String, required: true },
   MA_AGE: { type: Number, required: true },
-  ROW_CHANGED_DATE: { type: Date, default: Date.now },
+  ROW_CHANGED_DATE: { type: String },
   MODIFIED_BY: { type: String, required: true },
   WELLTOPID: { type: Number, required: true },
   LONGTITUDE: { type: Number, required: true },

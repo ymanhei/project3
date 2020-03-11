@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import SourceCard from "../components/SourceCard";
+import WelltopCard from "../components/WelltopCard";
 import API from "../utils/API";
+import moment from "moment"
 
 class Detail extends Component {
   state = {
@@ -37,52 +40,40 @@ class Detail extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>Source:
+          <Col size="md-6">
+            <SourceCard header={this.state.welltop.BOREHOLE_NAME}>
+              <section>Source:
                 <ul>
-                  <li> Well Name: {this.state.welltop.BOREHOLE_NAME}</li>
                   <li> Surface: {this.state.welltop.STRAT_UNIT_ID}</li>
                   <li> Depth: {this.state.welltop.PICK_DEPTH}m </li>
+                  <li> Interpreter: {this.state.welltop.INTERP_ID}</li>
+                  <li> Geological Age: {this.state.welltop.MA_AGE}</li>
+                  <li> Last Updated Date: {this.state.welltop.ROW_CHANGED_DATE}</li>
+                  <li> Updated By: {this.state.welltop.MODIFIED_BY}</li>
+                  <li> Welltop ID: {this.state.welltop.WELLTOPID}</li>
+                  <li> UBHI: {this.state.welltop.UBHI} </li>
                   </ul>
-              </h1>
-            </Jumbotron>
+              </section>
+            </SourceCard>
           </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Remarks</h1>
-              <p>
-                {this.state.welltop.remarks} 
-              </p>
-            </article>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>Welltoplist:
+          <Col size="md-6">
+            <WelltopCard header={this.state.welltopalt.BOREHOLE_NAME}>
+              <section>Welltoplist:
                 <ul>
-                  <li> Well Name: {this.state.welltopalt.BOREHOLE_NAME}</li>
                   <li> Surface: {this.state.welltopalt.STRAT_UNIT_ID}</li>
                   <li> Depth: {this.state.welltopalt.PICK_DEPTH}m </li>
+                  <li> Interpreter: {this.state.welltopalt.INTERP_ID}</li>
+                  <li> Geological Age: {this.state.welltopalt.MA_AGE}</li>
+                  <li> Last Updated Date: {this.state.welltopalt.ROW_CHANGED_DATE} </li>
+                  <li> Updated By: {this.state.welltopalt.MODIFIED_BY}</li>
+                  <li> Welltop ID: {this.state.welltopalt.WELLTOPID}</li>
+                  <li> UBHI: {this.state.welltopalt.UBHI} </li>
                   </ul>
-              </h1>
-            </Jumbotron>
+              </section>
+            </WelltopCard>
           </Col>
         </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Remarks</h1>
-              <p>
-                {this.state.welltopalt.MA_AGE} 
-              </p>
-            </article>
-          </Col>
-        </Row>
-        
+
         <Row>
           <Col size="md-2">
             <Link to="/">← Back to Surfaces</Link>
