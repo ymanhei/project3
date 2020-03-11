@@ -76,7 +76,7 @@ class Detail extends Component {
 
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Surfaces</Link>
+            <Link to="/welltops">← Back to Surfaces</Link>
           </Col>
         </Row>
       </Container>

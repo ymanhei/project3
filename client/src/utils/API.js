@@ -23,6 +23,9 @@ export default {
   updateWelltop: function(wid,welltopdata) {
     return axios.put("/api/welltops/wid/" + wid,welltopdata);
   },
+  getuserpw: function() {
+    return axios.get("/api/userpw");
+  },
   // Gets missing welltops
   getWelltops: function() {
     return axios.get("/api/welltops");

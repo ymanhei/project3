@@ -1,7 +1,7 @@
 const db = require("../models");
 var Welltopids = [];
 var incWelltopids = [];
-console.log("Init: " + incWelltopids);
+//console.log("Init: " + incWelltopids);
 
 /* function pushtoWelltopids () {
 //find all ids from welltop collection
@@ -194,6 +194,12 @@ module.exports = {
     db.Welltop
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  getuserpw: function(req, res) {
+    db.User
+      .findOne({})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

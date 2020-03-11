@@ -5,6 +5,7 @@ const totalRoutes = require("./total");
 const surfacesroutes = require("./surfaces");
 const usersroutes = require("./users");
 const boreholesroutes = require("./boreholes");
+const userpwroutes = require("./userpw");
 
 // Book routes
 router.use("/welltops", welltopRoutes);
@@ -13,5 +14,6 @@ router.use("/all", totalRoutes);
 router.use("/surfaces", surfacesroutes);
 router.use("/users", usersroutes);
 router.use("/boreholes", boreholesroutes);
+router.use("/userpw", userpwroutes);
 
 module.exports = router;
