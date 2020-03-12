@@ -30,7 +30,6 @@ class Welltops extends Component {
     STRAT_UNIT_ID: "",
     PICK_DEPTH: 0,
     MA_AGE: ""
-    
   };
 
   componentDidMount() {
@@ -48,7 +47,6 @@ class Welltops extends Component {
       this.setState({ allsurfaces: res.data})
     )
     .catch(err => console.log(err));
-    //console.log("this.state.allsurfaces:    " + this.state.allsurfaces.length);
   };
 
   returnidarr = (data) => {
@@ -56,7 +54,6 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d._id);
     })
-    //console.log(arr);
    return arr
    };  
 
@@ -65,7 +62,6 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d._id.LATITUDE);
     })
-    //console.log(arr);
    return arr
    };
 
@@ -74,7 +70,6 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d._id.LONGTITUDE);
     })
-    //console.log(arr);
    return arr
    };
 
@@ -83,7 +78,6 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d._id.BOREHOLE_NAME);
     })
-    //console.log(arr);
    return arr
    };
 
@@ -92,7 +86,6 @@ class Welltops extends Component {
     data.forEach(function (d) {
       arr.push(d.count);
     })
-   // console.log(arr);
    return arr
    }; 
 
@@ -160,13 +153,6 @@ class Welltops extends Component {
     .catch(err => console.log(err));
     
     this.state.welltopsinc.forEach(welltop =>
-     /*  this.setState({
-        WELLTOPID: welltop.WELLTOPID,
-        BOREHOLE_NAME: welltop.BOREHOLE_NAME,
-        STRAT_UNIT_ID: welltop.STRAT_UNIT_ID,
-        PICK_DEPTH: welltop.PICK_DEPTH,
-        MA_AGE: welltop.MA_AGE}) */
-        //console.log("welltop: " + welltop.WELLTOPID)
         API.updateWelltopinc(welltop.WELLTOPID)
         .then(res => 
           this.loadWelltops())
@@ -174,25 +160,6 @@ class Welltops extends Component {
     )
     alert("Copied " + this.state.welltops.length + "  & updated " + this.state.welltopsinc.length + " welltops.")
   }
-
-        
- /*  showpie = () => {
-    var data = [{
-      values: [19, 26, 55],
-      labels: ["Residential", "Non-Residential", "Utility"],
-      type: "pie"
-    }];
-    
-    var layout = {
-      height: 400,
-      width: 500
-    };
-    
-    Plotly.newPlot("myDiv", data, layout);
-    console.log("Plotly!")
-  }; */
-
- 
 
   render() {
     return (

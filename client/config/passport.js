@@ -1,8 +1,6 @@
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var db = require("../../models");
-//const login = require ('../src/components/utils');
-
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -16,8 +14,6 @@ passport.use(new LocalStrategy(
         console.log("password is wrong");
         return done(null, false, { message: 'Incorrect password.' });
       }
-      //console.log(user);
-      //login.login();
       return done(null, user);
     });
   }

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const welltopsController = require("../../controllers/welltopsController");
 
+// Matches with "/api/all"
   router
   .route("/welltops")
   .get(welltopsController.findallwelltops);

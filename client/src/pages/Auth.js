@@ -14,7 +14,6 @@ class Auth extends Component {
 
   componentDidMount() {
     login.logout();
-      
   }
 
   handleInputChange = event => {
@@ -48,18 +47,18 @@ render()  {
         <Col size="md-12">
           <Jumbotron>
           <form action="/user/login" method="post">
-    <div>
-        <label>Username: (admin)</label>
-        <input type="text" name="username" onChange={this.handleInputChange}/>
-    </div>
-    <div>
-        <label>Password: (admin)</label>
-        <input type="password" name="password" onChange={this.handleInputChange}/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"  onClick={this.handleFormSubmit} />
-    </div>
-</form>
+            <div>
+              <label>Username: (admin)</label>
+              <input type="text" name="username" onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <label>Password: (admin)</label>
+              <input type="password" name="password" onChange={this.handleInputChange}/>
+          </div>
+          <div>
+              <input type="submit" value="Log In"  onClick={this.handleFormSubmit} />
+          </div>
+          </form>
 
           </Jumbotron>
         </Col>

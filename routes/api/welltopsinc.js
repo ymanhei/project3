@@ -13,8 +13,10 @@ router
   .put(welltopsController.update)
   .delete(welltopsController.remove);
 
+  // Matches with "/api/welltops/wid/:wid"
   router
   .route("/wid/:wid")
   .get(welltopsController.findBywIdinc)
   .put(welltopsController.findnUpdate);
+
 module.exports = router;

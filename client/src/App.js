@@ -21,7 +21,6 @@ function App() {
           <PrivateRoute exact path="/welltopsinc/wid/:wid" component={Detail} /> 
           <PrivateRoute exact path="/welltops/:id" component={Detail} />
           <PrivateRoute exact path="/welltopsinc/:id" component={Detail} />
-          
           <PublicRoute restricted={false} component={NoMatch} />
         </Switch>
       </div>

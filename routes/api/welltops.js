@@ -13,6 +13,7 @@ router
   .put(welltopsController.update)
   .delete(welltopsController.remove);
 
+  // Matches with "/api/welltops/wid/:wid"
   router
   .route("/wid/:wid")
   .get(welltopsController.findBywId)

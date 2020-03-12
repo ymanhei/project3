@@ -23,19 +23,12 @@ app.use(passport.session());
 app.use(flash());
 // Add routes, both API and view
 app.use(routes);
-// Requiring our routes
-/* require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app); */
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
 
-//const conn2 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/wtSource");
-//const conn1 = mongoose.createConnection(process.env.MONGODB_URI || "mongodb://localhost/welltoplist");
 
-//console.log(conn2);
-//Repopulate all the data 
-//const seedDB2 = require("./scripts/seedDB2");
+//Repopulate all the data
 //const seedDB = require("./scripts/seedDB");
 
 

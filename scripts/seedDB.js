@@ -8,114 +8,6 @@ mongoose.connect(
   "mongodb://localhost/welltoplist"
 );
 
-/* const welltopSeed = [
-  {
-    welltopid: 100001,
-    wellname: 'Well A',
-    surface: 'TR_1.0',
-        depth: 250,
-        remarks:
-          'Remark 1',
-        date: new Date(Date.now())
-    },
-    {
-    welltopid: 100002,
-    wellname: 'Well B',
-    surface: 'TR_2.0',
-        depth: 275,
-        remarks:
-          'Remark 2',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100003,
-    wellname: 'Well C',
-    surface: 'TR_3.0',
-        depth: 300,
-        remarks:
-          'Remark 3',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100004,
-    wellname: 'Well D',
-    surface: 'TR_4.0',
-        depth: 325,
-        remarks:
-          'Remark 4',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100005,
-    wellname: 'Well E',
-    surface: 'TR_5.0',
-        depth: 350,
-        remarks:
-          'Remark 5',
-        date: new Date(Date.now())
-    },
-  
-];
-
-const welltopSeed2 = [
-  {
-    welltopid: 100001,
-    wellname: 'Well A',
-    surface: 'TR_1.0',
-        depth: 250,
-        remarks:
-          'Remark 1',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100002,
-    wellname: 'Well B',
-    surface: 'TR_2.0',
-        depth: 275,
-        remarks:
-          'Remark 2',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100003,
-    wellname: 'Well C',
-    surface: 'TR_3.0',
-        depth: 300,
-        remarks:
-          'Remark 3',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100004,
-    wellname: 'Well D',
-    surface: 'TR_4.0',
-        depth: 325,
-        remarks:
-          'Remark 4',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100005,
-    wellname: 'Well E',
-    surface: 'TR_5.0',
-        depth: 350,
-        remarks:
-          'Remark 5',
-        date: new Date(Date.now())
-    },
-    {
-      welltopid: 100006,
-    wellname: 'Well F',
-    surface: 'TR_6.0',
-        depth: 375,
-        remarks:
-          'Remark 6',
-        date: new Date(Date.now())
-    }
-    
-    
-]; */
-
 const welltopSeed = [
   {
     UBHI: 18104,
@@ -18710,6 +18602,8 @@ const welltopSeed = [
     
     
 ];
+
+//IMPORTANT!! After sucessfuly insert into db.Welltop, comment out it and uncomment db.Source to populate the data.
 
 /* db.Source
 .remove({})

@@ -7,7 +7,7 @@ const usersroutes = require("./users");
 const boreholesroutes = require("./boreholes");
 const userpwroutes = require("./userpw");
 
-// Book routes
+// all routes
 router.use("/welltops", welltopRoutes);
 router.use("/welltopsinc", welltopincRoutes);
 router.use("/all", totalRoutes);
