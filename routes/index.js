@@ -5,7 +5,7 @@ const authroute = require("./authroute.js");
 
 // API and User Routes
 router.use("/api", apiRoutes);
-router.use("/user", authroute);
+//router.use("/user", authroute);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

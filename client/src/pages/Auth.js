@@ -32,6 +32,7 @@ class Auth extends Component {
  
     if(this.state.username === this.state.apiusername && this.state.password === this.state.apipassword) {
       login.login();
+      console.log("Login Sucessful!");
       window.location.href = "/welltops"; 
     }
     else {
@@ -46,7 +47,7 @@ render()  {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-          <form action="/user/login" method="post">
+          <form>
             <div>
               <label>Username: (admin)</label>
               <input type="text" name="username" onChange={this.handleInputChange}/>
