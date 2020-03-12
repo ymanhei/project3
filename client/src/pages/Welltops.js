@@ -40,7 +40,6 @@ class Welltops extends Component {
     this.getall();
     this.getallsurfaces();
     this.populatesurfacearr();
-    
   }
 
   getallsurfaces = () => {
