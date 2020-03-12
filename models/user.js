@@ -7,6 +7,11 @@ const userSchema = new Schema({
   password: { type: String, required: true }
 });
 
+userSchema.methods.validPassword = function( pwd ) {
+ 
+    return ( this.password === pwd );
+};
+
 const User = mongoose.model("User", userSchema);
 
 

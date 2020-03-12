@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+const login = require ('../components/utils');
 
 class Auth extends Component {
   state = {
@@ -12,9 +13,8 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-      API.getuserpw()
-      .then(res => this.setState({ apiusername: res.data.username, apipassword: res.data.password }))
-      .catch(err => console.log(err));
+    login.logout();
+      
   }
 
   handleInputChange = event => {
@@ -26,12 +26,13 @@ class Auth extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-   console.log(this.state.username );
-   console.log(this.state.apiusername );
-   console.log(this.state.password );
-   console.log(this.state.apipassword );
-    if(this.state.username == this.state.apiusername && this.state.password == this.state.apipassword) {
 
+    API.getuserpw()
+    .then(res => this.setState({ apiusername: res.data.username, apipassword: res.data.password }))
+    .catch(err => console.log(err));
+ 
+    if(this.state.username == this.state.apiusername && this.state.password == this.state.apipassword) {
+      login.login();
       window.location.href = "/welltops"; 
     }
     else {
@@ -46,7 +47,7 @@ render()  {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-          <form >
+          <form action="/user/login" method="post">
     <div>
         <label>Username: (admin)</label>
         <input type="text" name="username" onChange={this.handleInputChange}/>
@@ -56,7 +57,7 @@ render()  {
         <input type="password" name="password" onChange={this.handleInputChange}/>
     </div>
     <div>
-        <input type="submit" value="Log In" onClick={this.handleFormSubmit}/>
+        <input type="submit" value="Log In"  onClick={this.handleFormSubmit} />
     </div>
 </form>
 

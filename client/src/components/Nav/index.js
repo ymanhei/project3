@@ -1,4 +1,6 @@
 import React from "react";
+const login = require('../utils');
+
 
 function Nav() {
   return (
@@ -6,6 +8,7 @@ function Nav() {
       <a className="navbar-brand" href="/">
       WDMD (Welltop Data Management Dashboard)
       </a>
+      <a className="float-right" href="/">Logout</a>
     </nav>
   );
 }

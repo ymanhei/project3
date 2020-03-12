@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Plot from 'react-plotly.js';
+const login = require ('../components/utils');
 
 class Welltops extends Component {
   
@@ -33,6 +34,7 @@ class Welltops extends Component {
   };
 
   componentDidMount() {
+    login.login();
     this.forceUpdate();
     this.loadWelltops();
     this.getall();
