@@ -14,7 +14,7 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Auth} />
+          <PublicRoute restricted={false} exact path="/" component={Auth} />
           <PrivateRoute exact path="/welltops" component={Welltops} />
           <PrivateRoute exact path="/welltopsinc" component={Welltops} />
           <PrivateRoute exact path="/welltops/wid/:wid" component={Detail} />
