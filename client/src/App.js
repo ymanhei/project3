@@ -15,12 +15,12 @@ function App() {
         <Nav />
         <Switch>
           <PublicRoute restricted={false} exact path="/" component={Auth} />
-          <PrivateRoute exact path="/welltops" component={Welltops} />
-          <PrivateRoute exact path="/welltopsinc" component={Welltops} />
-          <PrivateRoute exact path="/welltops/wid/:wid" component={Detail} />
-          <PrivateRoute exact path="/welltopsinc/wid/:wid" component={Detail} /> 
-          <PrivateRoute exact path="/welltops/:id" component={Detail} />
-          <PrivateRoute exact path="/welltopsinc/:id" component={Detail} />
+          <PublicRoute exact path="/welltops" component={Welltops} />
+          <PublicRoute exact path="/welltopsinc" component={Welltops} />
+          <PublicRoute exact path="/welltops/wid/:wid" component={Detail} />
+          <PublicRoute exact path="/welltopsinc/wid/:wid" component={Detail} /> 
+          <PublicRoute exact path="/welltops/:id" component={Detail} />
+          <PublicRoute exact path="/welltopsinc/:id" component={Detail} />
           
           <PublicRoute restricted={false} component={NoMatch} />
         </Switch>
