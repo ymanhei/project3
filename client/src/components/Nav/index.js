@@ -1,6 +1,4 @@
 import React from "react";
-const login = require('../utils');
-
 
 function Nav() {
   return (

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
@@ -167,7 +166,7 @@ class Welltops extends Component {
         <Row>
           <Col size="md-6">
           <Jumbotron>
-          {this.state.allwelltops.length == this.state.allsources.length ? 
+          {this.state.allwelltops.length === this.state.allsources.length ? 
             (<section>
               <h3>Welltops Numbers Matched:</h3>
               <p className="text-success">{this.state.allwelltops.length} out of {this.state.allsources.length}</p>
@@ -182,7 +181,7 @@ class Welltops extends Component {
               </section>
               )}
 
-            {this.state.welltopsinc.length == 0 ? (
+            {this.state.welltopsinc.length === 0 ? (
               <section>
               <h3>Welltops Depth Matched:</h3>
                  <p className="text-success">{this.state.allwelltops.length-this.state.welltopsinc.length} out of {this.state.allwelltops.length}</p>
@@ -253,7 +252,7 @@ class Welltops extends Component {
           <div id='myDiv' className="position-absolute">
           <Plot className="border border-secondary rounded"
         data={[{type: 'densitymapbox', lon: this.state.lonarr, lat: this.state.latarr, z: this.state.wtcountarr, text:this.state.bhnamearr}]}
-        layout={ {width: 940, height: 400 , mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
+        layout={ {mapbox: {style: 'stamen-terrain' ,center: {lat: -20, lon:120} ,zoom: 3} , width: 940, height: 400 ,margin: {t: 0, b: 0, r:0, l:0}} }
       />
          
           </div>

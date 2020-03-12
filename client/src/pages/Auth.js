@@ -30,7 +30,7 @@ class Auth extends Component {
     .then(res => this.setState({ apiusername: res.data.username, apipassword: res.data.password }))
     .catch(err => console.log(err));
  
-    if(this.state.username == this.state.apiusername && this.state.password == this.state.apipassword) {
+    if(this.state.username === this.state.apiusername && this.state.password === this.state.apipassword) {
       login.login();
       window.location.href = "/welltops"; 
     }
