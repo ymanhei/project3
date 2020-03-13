@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-/* var passport = require("./client/config/passport");
+var passport = require("./client/config/passport");
 var session = require("express-session");
-var flash = require('connect-flash'); */
+var flash = require('connect-flash');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
@@ -17,10 +17,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-//app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-//app.use(passport.initialize());
-//app.use(passport.session());
-//app.use(flash());
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 // Add routes, both API and view
 app.use(routes);
 

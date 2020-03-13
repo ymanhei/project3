@@ -14,14 +14,14 @@ function App() {
       <div>
         <Nav/>
         <Switch>
-          
-          <Route exact path="/auth/login" component={Auth} />
-          <Route exact path="/welltops" component={Welltops} />
-          <Route exact path="/welltopsinc" component={Welltops} />
-          <Route exact path="/welltops/wid/:wid" component={Detail} />
-          <Route exact path="/welltopsinc/wid/:wid" component={Detail} />
-          <Route exact path="/" component={Welltops} /> 
-          <Route component={NoMatch} />
+          <PublicRoute Restricted={false} exact path="/" component={Auth} />
+
+          <PrivateRoute exact path="/welltops" component={Welltops} />
+          <PrivateRoute exact path="/welltopsinc" component={Welltops} />
+          <PrivateRoute exact path="/welltops/wid/:wid" component={Detail} />
+          <PrivateRoute exact path="/welltopsinc/wid/:wid" component={Detail} />
+
+          <PublicRoute Restricted={false} component={NoMatch} />
         </Switch>
       </div>
     </Router>

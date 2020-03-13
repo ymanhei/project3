@@ -33,7 +33,7 @@ class Welltops extends Component {
 
   componentDidMount() {
     console.log("COMPONENT LOADED");
-    //login.login();
+    login.login();
     this.forceUpdate();
     this.loadWelltops();
     this.getall();

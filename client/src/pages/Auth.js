@@ -13,10 +13,9 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    //login.logout();
-    API.getuserpw()
-    .then(res => this.setState({ apiusername: res.data.username, apipassword: res.data.password }))
-    .catch(err => console.log(err));
+ 
+    login.logout();
+    
   }
 
   handleInputChange = event => {
@@ -30,10 +29,13 @@ class Auth extends Component {
     event.preventDefault();
     console.log("Login TEST!");
     
+    API.getuserpw()
+    .then(res => this.setState({ apiusername: res.data.username, apipassword: res.data.password }))
+    .catch(err => console.log(err));
  
     if(this.state.username === this.state.apiusername && this.state.password === this.state.apipassword) {
-      //login.login();
       console.log("Login Sucessful!");
+      login.login();
       window.location.href = "/welltops"; 
     }
     else {

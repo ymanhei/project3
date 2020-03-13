@@ -1,22 +1,50 @@
-WCVA (Welltops Comparison and Visualisation Application)
+#WDMD (Welltops Data Management Dashboard)
 
-Components:
-1. Quick database comparison
-    -Number of objects
-    -Missing objects
-    -Inconsistent attributes (MD)
-    -One click fix function
+This project was bootstrapped with Create React App.
 
-2. Welltop search function
-    -by well name
-    -by surface name
-    -by depth range
-    -Well top create/delete function
+Some information and guidelines are provided on this project. You may contact the developer for further information.
 
-3. Simple pie/bar chart 
-    -show pie chart by attributes (Well,Surface)
+##About
+This is a final project for my fullstack web development course. This MERN project contains my all hardwork in the past six months. 
 
-4. Authenication (Optional)
-    - User/Admin mode
+###Built With
+Mongodb, Express, ReactJS, Node.js, Javascript.
 
-5. Databases connection (Optional)
+##Getting Started
+Clone the repo onto your local drive. Then change directoty in terminal to get into the cloned folder:
+```
+git clone https://github.com/ymanhei/project3.git
+cd project3
+```
+
+###Prerequisites
+Node.js
+MongoDB
+Nodemon
+create-react-app
+
+###Installing
+Run these commands in the terminal:
+```
+npm install
+npm start
+```
+
+##Deliverables
+ -[x] Login and logout.
+ -[x] Authentication with passport.
+ -[x] Session information stored with express sessions.
+ -[x] Compare number of documents between specific collections.
+ -[x] Compare specific attributes between specific collections.
+ -[x] Create and update data for  MongoDB collections.
+
+###Future Improvements
+- Configurable database sources.
+- Configurable layout and views.
+- Configurable data selection and functions.
+
+##Developer
+Fully By Shing Hei Chan
+
+###Acknowledgments
+Bryan, Avi, Jason...etc in UWA Coding Bootcamp 2019-2020.

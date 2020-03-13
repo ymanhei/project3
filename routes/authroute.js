@@ -3,9 +3,9 @@ const router = require("express").Router();
 var passport = require("passport");
 
 // Route for "/login"
-/* router.route("/login")
+router.route("/login")
   .post(passport.authenticate('local', { successRedirect: '/welltops',
   failureRedirect: '/',
-  failureFlash: true })); */
+  failureFlash: true }));
 
 module.exports = router;
