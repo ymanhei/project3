@@ -1,12 +1,12 @@
 import React from "react";
 
-function Nav() {
+function Nav(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <a className="navbar-brand" href="/">
       WDMD (Welltop Data Management Dashboard)
       </a>
-      <a className="float-right" href="/">Logout</a>
+     <a className="float-right" href="/">Logout </a> 
     </nav>
   );
 }
