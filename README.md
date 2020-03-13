@@ -18,10 +18,19 @@ cd project3
 ```
 
 ### Prerequisites
-Node.js
-MongoDB
-Nodemon
-create-react-app
+- Node.js
+- MongoDB
+- Nodemon
+- create-react-app
+- Passport
+- Plotly
+
+# MongoDB Preparation
+You may include seedDB.js (line32 in server.js) in the server.js for initial data population. You will need to do both models 'db.Source' and 'db.Welltop' to populate the data into both collections.
+
+However, the app may not work probably when seedDB.js (line32 in server.js) is included. Please remember to comment out this line when using the app.
+
+Please change your connection string to MongDB in server.js. In order to make this app works, please make sure 3 collections 'sources','welltops' and 'users' are created in the database. You may manually insert the data with the reference in seedDB.js. Don't forget to insert your username and password in the 'users' collection.
 
 ### Installing
 Run these commands in the terminal:
@@ -47,4 +56,5 @@ npm start
 Fully By Shing Hei Chan
 
 ### Acknowledgments
-Bryan, Avi, Jason...etc in UWA Coding Bootcamp 2019-2020.
+Bryan, Avi, Jason...etc all the tutors in UWA Coding Bootcamp 2019-2020.
+
