@@ -14,12 +14,13 @@ function App() {
       <div>
         <Nav/>
         <Switch>
-          <Route exact path="/" component={Welltops} />
+          
           <Route exact path="/auth/login" component={Auth} />
           <Route exact path="/welltops" component={Welltops} />
           <Route exact path="/welltopsinc" component={Welltops} />
           <Route exact path="/welltops/wid/:wid" component={Detail} />
-          <Route exact path="/welltopsinc/wid/:wid" component={Detail} /> 
+          <Route exact path="/welltopsinc/wid/:wid" component={Detail} />
+          <Route exact path="/" component={Welltops} /> 
           <Route component={NoMatch} />
         </Switch>
       </div>
